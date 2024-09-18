@@ -1,0 +1,72 @@
+﻿<Window x:Class="Zochowski_cukiernia.Window2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zochowski_cukiernia"
+        mc:Ignorable="d"
+        Title="Pracownicy" Height="450" Width="800">
+    <Window.Resources>
+        <LinearGradientBrush x:Key="tloPrzyciskow" StartPoint="0.5,0"
+            EndPoint="0.5,1">
+            <GradientStop Color="Pink" Offset="0"/>
+            <GradientStop Color="PaleVioletRed" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" MinHeight="671"/>
+            <RowDefinition Height="0*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <Style x:Key="stylPrzyciskow">
+                <Setter Property="Button.Margin" Value="10"/>
+                <Setter Property="Button.Padding" Value="10"/>
+                <Setter Property="Button.FontSize" Value="12"/>
+                <Setter Property="Button.FontWeight" Value="Bold"/>
+                <Setter Property="Button.FontStyle" Value="Italic"/>
+                <Setter Property="Button.BorderBrush" Value="Black"/>
+                <Setter Property="Button.BorderThickness" Value="2"/>
+                <Setter Property="Button.Background" Value="{StaticResource tloPrzyciskow}"/>
+            </Style>
+        </Grid.Resources>
+        <Menu Grid.Row="0" Grid.Column="0">
+            
+            <MenuItem Header="Strony">
+                <MenuItem Header="Zakupy" Click="goToZakupy"/>
+                <MenuItem Header="Opinie" Click="goToOpinie"/>
+                <MenuItem Header="Pracownicy"/>
+            </MenuItem>
+        </Menu>
+        <Label Content="Dodaj Pracownika" HorizontalAlignment="Left" Height="54" Margin="29,98,0,0" VerticalAlignment="Top" Width="343" HorizontalContentAlignment="Center" FontSize="22" FontWeight="Bold"/>
+        <Label Content="Imię i nazwisko:" HorizontalAlignment="Left" Height="28" Margin="24,152,0,0" VerticalAlignment="Top" Width="143" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="userName" HorizontalAlignment="Left" Height="23" Margin="172,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125"/>
+        <Label Content="Stanowisko:" HorizontalAlignment="Left" Height="28" Margin="24,198,0,0" VerticalAlignment="Top" Width="143" HorizontalContentAlignment="Center"/>
+        <ComboBox x:Name="stanowiskoComboBox" SelectedItem="Stażysta" HorizontalAlignment="Left" Height="24" Margin="172,200,0,0" VerticalAlignment="Top" Width="125" />
+
+        <Button x:Name="ResetButton" Content="reset" Style="{StaticResource stylPrzyciskow}" HorizontalAlignment="Left" Height="44" Margin="110,260,0,0" VerticalAlignment="Top" Width="106" Click="resetButtonClick"/>
+        <Button x:Name="AddButton" Content="dodaj" Style="{StaticResource stylPrzyciskow}" HorizontalAlignment="Left" Height="44" Margin="251,260,0,0" VerticalAlignment="Top" Width="106" Click="addButtonClick"/>
+        <Label x:Name="komunikat" HorizontalAlignment="Left" Height="76" Margin="24,331,0,0" VerticalAlignment="Top" Width="376" HorizontalContentAlignment="Center" FontSize="24" FontWeight="Bold" Foreground="Red"/>
+
+
+        <ListView x:Name="lstPracownicy" Margin="400,54,10,367" MouseDoubleClick="lstPracownicy_MouseDoubleClick">
+            <ListView.ItemContainerStyle>
+                <Style/>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nr" DisplayMemberBinding="{Binding Numer}"/>
+                    <GridViewColumn Header="Imię" DisplayMemberBinding="{Binding Imie}"/>
+                    <GridViewColumn Header="Nazwisko" DisplayMemberBinding="{Binding Nazwisko}"/>
+                    <GridViewColumn Header="Stanowisko" DisplayMemberBinding="{Binding Stanowisko}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="deleteButton" Content="usuń użytkownika" Style="{StaticResource stylPrzyciskow}" HorizontalAlignment="Left" Height="48" Margin="498,340,0,0" VerticalAlignment="Top" Width="194" Click="deleteButton_Click"/>
+
+
+    </Grid>
+</Window>
